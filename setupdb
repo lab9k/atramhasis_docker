@@ -1,0 +1,29 @@
+#!/bin/bash
+
+sqlite3 /opt/atramhasis_gent/atramhasis_gent.sqlite "INSERT INTO conceptscheme VALUES (1, 'urn:x-atramhasis_gent:words')"
+
+CONF_FILE=/opt/atramhasis_gent/atramhasis_gent/skos/__init__.py
+
+
+cat > "$CONF_FILE" << EOM
+# -*- coding: utf-8 -*-
+
+import logging
+log = logging.getLogger(__name__)
+
+from skosprovider_sqlalchemy.providers import SQLAlchemyProvider
+
+def includeme(config):
+    ATRAM_GENT = SQLAlchemyProvider(
+    {
+        'id': 'atramhasis_gent',
+        'conceptscheme_id': 1
+    },
+    config.registry.dbmaker
+    )
+
+    skosregis = config.get_skos_registry()
+
+    skosregis.register_provider(ATRAM_GENT)
+EOM
+
