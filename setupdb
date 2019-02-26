@@ -16,7 +16,7 @@ from skosprovider_sqlalchemy.providers import SQLAlchemyProvider
 def includeme(config):
     ATRAM_GENT = SQLAlchemyProvider(
     {
-        'id': 'atramhasis_gent',
+        'id': 'GENT_WORDS',
         'conceptscheme_id': 1
     },
     config.registry.dbmaker
