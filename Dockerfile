@@ -72,8 +72,9 @@ RUN cd /opt/atramhasis_gent/atramhasis_gent/static && \
 
 RUN cd /opt/atramhasis_gent && \
   sed -i '/app:main/a atramhasis.rdf2hdt = /usr/local/src/hdt-cpp/hdt-lib/tools/rdf2hdt' development.ini && \
-  generate_ldf_config development.ini && \
-  npm install -g ldf-server
+  generate_ldf_config development.ini
+  
+RUN npm install -g ldf-server
 
 COPY setupdb /opt/setupdb
 RUN /bin/bash /opt/setupdb
