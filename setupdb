@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sqlite3 /opt/atramhasis_gent/atramhasis_gent.sqlite "INSERT INTO conceptscheme VALUES (1, 'urn:x-atramhasis_gent:words')"
+sqlite3 /opt/atramhasis_gent/atramhasis_gent.sqlite "INSERT INTO conceptscheme VALUES (2, 'urn:x-atramhasis_gent:score')"
 
 CONF_FILE=/opt/atramhasis_gent/atramhasis_gent/skos/__init__.py
 
@@ -18,6 +19,14 @@ def includeme(config):
     {
         'id': 'GENT_WORDS',
         'conceptscheme_id': 1
+    },
+    config.registry.dbmaker
+    )
+
+    ATRAM_SCORE = SQLAlchemyProvider(
+    {
+        'id': 'SCORE_TAX',
+        'conceptscheme_id': 2
     },
     config.registry.dbmaker
     )
