@@ -34,5 +34,6 @@ def includeme(config):
     skosregis = config.get_skos_registry()
 
     skosregis.register_provider(ATRAM_GENT)
+    skosregis.register_provider(ATRAM_SCORE)
 EOM
 
